@@ -27,3 +27,23 @@ v=${b%%[)| ]*}
 export PATH="$NVM_DIR/versions/node/$v/bin:$PATH"
 ```
 Você pode adicionar esse trecho do script no arquivo gerado pelo husky na pasta `.husky/commit-msg`
+
+## Adicionando novos hooks
+
+Para adicionar outros hooks, basta criar o evento na pasta `.husky`.  Consultar a documentação do husky para olhar os hooks.
+
+Exemplo:
+
+ - Hook para pre-commit
+ ```
+  #!/bin/sh
+  . "$(dirname "$0")/_/husky.sh"
+  npx lint-staged
+ ```
+ 
+ - Hook para commit-msg
+ ```
+  #!/bin/sh
+  . "$(dirname "$0")/_/husky.sh"
+  npx --no-install commitlint --edit ""
+ ```
